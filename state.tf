@@ -1,7 +1,13 @@
 data "aws_caller_identity" "current" {}
 
+resource "random_string" "random" {
+  length = 16
+  special = true
+  override_special = "/@\" 
+}
+
 resource "aws_dynamodb_table" "locking" {
-  name           = "${data.aws_caller_identity.current.account_id}-${local.name}"
+  name           = "${data.aws_caller_identity.current.account_id}-${random_string.random.result}"
   read_capacity  = "20"
   write_capacity = "20"
   hash_key       = "LockID"
@@ -13,7 +19,7 @@ resource "aws_dynamodb_table" "locking" {
 }
 
 resource "aws_s3_bucket" "state" {
-  bucket = "${data.aws_caller_identity.current.account_id}-${local.name}"
+  bucket = "${data.aws_caller_identity.current.account_id}-${random_string.random.result}"
   region = "${local.region}"
 
   versioning {
