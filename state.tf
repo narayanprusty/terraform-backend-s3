@@ -2,8 +2,9 @@ data "aws_caller_identity" "current" {}
 
 resource "random_string" "random" {
   length = 16
-  special = true
-  override_special = "/@\" 
+  special = false
+  upper = false
+  number = false
 }
 
 resource "aws_dynamodb_table" "locking" {
