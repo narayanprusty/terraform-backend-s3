@@ -12,4 +12,4 @@ terraform init
 terraform apply -auto-approve
 ```
 
-> Note the values of ourput variables: `BACKEND_BUCKET_NAME`, `BACKEND_TABLE_NAME`, `BACKEND_REGION`
+> Note the values of output variables: `BACKEND_BUCKET_NAME`, `BACKEND_TABLE_NAME`, `BACKEND_REGION`
